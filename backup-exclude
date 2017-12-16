@@ -2,8 +2,8 @@
 /boot
 /dev
 /etc
-/home/tkalt/.gvfs
-/home/tkalt/.cache
+/home/username/.gvfs
+/home/username/.cache
 /lib
 /lib64
 /media
