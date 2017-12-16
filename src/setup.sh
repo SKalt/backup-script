@@ -5,13 +5,15 @@ read bdrive # backup drive
 
 # set the computer/host name
 host=$(hostname -f)
-echo -n "Override hostname? [default: $host]: "
+echo "default hostname: $host"
+echo -n "Override hostname here, if desired: "
 read _host
 if [ "$_host" ]; then { host=_host; } fi
 
 # set the user name/directory
 user=$(id -un)
-echo -n "Override username? [default: $user]: "
+echo "default username: $user"
+echo -n "Override username here, if desired: "
 read _user
 if [ "$_user" ]; then { host=_host; } fi
 

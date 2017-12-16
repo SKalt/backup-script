@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
 # checks the config file imports successfully.
-if [ -e $DIR/backup.cfg ] then {
-  . $DIR/src/setup
+if [ ! -e "$DIR/backup.cfg" ]; then {
+  source $DIR/src/setup.sh;
 } fi
 
 # import globals from the config.
-. $DIR/backup.cfg
-exit_status=""
+source $DIR/backup.cfg
+exit_status=
 
 if [ ! "$bdrive" ]; then {
   echo "bdrive missing: \"$bdrive\"";

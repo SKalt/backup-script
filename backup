@@ -1,36 +1,20 @@
 #!/bin/bash
 # make a snapshot of __computer_name__'s root filesystem.
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+unset bdrive host user target latest
 # make sure we're running as root
-if (( `id -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit; } fi
+if (( `id -u` != 0 )); then {
+   echo "Sorry, must be root.  Exiting...";
+   exit;
+ } fi
 
-# Caution!  If you use --link-dest, you need a slash on the end of your source.
-# This is how to do it for the root directory
-source="/./"
-bdrive=/media/__user__/SeagateExt4    # backup drive
-latest=$bdrive/__computer_name__/latest
-target=$bdrive/__computer_name__/`date +%Y%b%d-%R`
-exclude=/home/__user__/bin/backup-exclude
+source $DIR/src/route_arguments.sh
+source $DIR/src/check_config.sh
 
 if [ ! -d $bdrive ]; then
 echo "Backup drive $bdrive does not exist.  Did you plug it in?"
-exit
+exit 1
 fi
 
-# --delete-excluded makes sense, but seems unnecessary... do more reading
-# also consider: -x
-
-#need to add logging, too...
-
-#----- use the backupInitial script to make the initial snapshot
-
-# make an incremental snapshot
-echo "start backup at" `date +"%x %X"`
-#echo -n "start backup at" `date +"%x %X"` >> ~/backup/backup.log
-echo rsync -av --delete --exclude-from=$exclude --link-dest=$latest $source $target
-nice rsync -av --delete --exclude-from=$exclude --link-dest=$latest $source $target
-rm $latest
-ln -s $target $latest
-#echo ",  finish at" `date +"%x %X"` >> ~/backup/backup.log
-echo "finish backup at" `date +"%x %X"`
-
+source $DIR/src/backup.sh

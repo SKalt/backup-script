@@ -1,0 +1,10 @@
+language: generic
+
+sudo: required
+
+addons:
+  apt:
+    packages:
+      - bats
+
+script: bats tests.bats
