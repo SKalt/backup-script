@@ -1,3 +1,6 @@
+#! /usr/bin/env bash
+# prints usage, then exits.
+
 program_name=$0
 function usage {
 cat <<help_message
