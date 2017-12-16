@@ -20,13 +20,14 @@ if [ "$_user" ]; then { host=_host; } fi
 exclude=/home/tkalt/bin/backup-exclude
 
 # write the config to disk.
+# Caution!  If you use --link-dest, you need a slash on the end of your source.
+# This is how to do it for the root directory
 config_contents=<<-config
   #! /usr/bin/env bash
   backup_source="/./"
   bdrive=$bdrive
-  latest=$bdrive/$host/latest
-  target=$bdrive/$host/`date +%Y%b%d-%R`
-  exclude=$DIR/backup-exclude
+  user=$user
+  host=$host
 config
 config_contents > $DIR/backup.cfg
 
@@ -56,5 +57,3 @@ exclude_contents=<<-exclude_file_contents
   /vmlinuz
 exclude_file_contents
 exclude_contents > $DIR/backup.exclude
-
-exit
