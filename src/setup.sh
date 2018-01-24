@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # a script to create a config file
+
 echo -n "path to backup drive: "
 read bdrive # backup drive
 
