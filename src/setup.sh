@@ -8,17 +8,17 @@ host=$(hostname -f)
 echo "default hostname: $host"
 echo -n "Override hostname here, if desired: "
 read _host
-if [ "$_host" ]; then { host=_host; } fi
+if [ "$_host" ]; then { host=$_host; } fi
 
 # set the user name/directory
 user=$(id -un)
 echo "default username: $user"
 echo -n "Override username here, if desired: "
 read _user
-if [ "$_user" ]; then { host=_host; } fi
+if [ "$_user" ]; then { user=$_user; } fi
 
-
-exclude=/home/tkalt/bin/backup-exclude
+# ??
+exclude=/home/$user/bin/backup-exclude
 
 # write the config to disk.
 # Caution!  If you use --link-dest, you need a slash on the end of your source.
