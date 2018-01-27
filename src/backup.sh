@@ -1,8 +1,17 @@
 # makes an incremental snapshot
+log () {
+  if [ $BACKUP_LOGGING  ]; then
+    if [ -w $BACKUP_LOGGING ]; then
+      echo $@ >> $BACKUP_LOGGING;
+    else
+      echo $@
+    fi;
+  fi;
+}
 
-echo "start backup at" `date +"%x %X"`
+log "start backup at" `date +"%x %X"`
 #echo -n "start backup at" `date +"%x %X"` >> ~/backup/backup.log
-echo rsync                          \
+log rsync                           \
   -av                               \
   --delete                          \
   --exclude-from=$exclude           \
@@ -20,6 +29,6 @@ nice                                \
 rm $latest
 ln -s $target $latest
 #echo ",  finish at" `date +"%x %X"` >> ~/backup/backup.log
-echo "finish backup at" `date +"%x %X"`
+log "finish backup at" `date +"%x %X"`
 
 exit
