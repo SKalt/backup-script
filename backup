@@ -17,4 +17,14 @@ echo "Backup drive $bdrive does not exist.  Did you plug it in?"
 exit 1
 fi
 
+if [ ! -d $bdrive/$latest ]; then
+  echo "creating initial $host directory"
+  mkdir $bdrive/$host
+fi
+
+# if [ ! -d $bdrive/$host/latest ]; then
+#   echo "creating intial $host/latest directory"
+#   mkdir $latest
+# fi
+
 source $DIR/src/backup.sh

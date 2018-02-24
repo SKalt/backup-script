@@ -32,7 +32,7 @@ user=$user
 host=$host
 config
 
-cat <<-exclude_file_contents > $DIR/backup.exclude
+cat <<-exclude_file_contents > $DIR/backup-exclude
 /bin
 /boot
 /dev

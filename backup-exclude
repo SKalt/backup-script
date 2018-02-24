@@ -2,8 +2,8 @@
 /boot
 /dev
 /etc
-/home/username/.gvfs
-/home/username/.cache
+/home/root/.gvfs
+/home/root/.cache
 /lib
 /lib64
 /media

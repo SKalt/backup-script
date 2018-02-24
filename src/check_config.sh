@@ -1,31 +1,31 @@
 #! /usr/bin/env bash
 
-# checks the config file imports successfully.
+# run the setup if no cfg file found
 if [ ! -e "$DIR/backup.cfg" ]; then {
   source $DIR/src/setup.sh;
 } fi
 
 # import globals from the config.
 source $DIR/backup.cfg
-exit_status=
+exit_status=# 0 until proven guilty
 
 if [ ! "$bdrive" ]; then {
-  echo "bdrive missing: \"$bdrive\"";
+  log "bdrive missing: \"$bdrive\"";
   exit_status=1;
 } fi;
 
 if [ ! "$host" ]; then {
-  echo "hostname missing: \"$host\"";
+  log "hostname missing: \"$host\"";
   exit_status=1;
 } fi
 
 if [ ! "$user" ]; then {
-  echo "user missing: \"$user\"";
+  log "user missing: \"$user\"";
   exit_status=1;
 } fi
 
 if [ ! "$backup_source" ]; then {
-  echo "hostname missing: \"$host\"";
+  log "hostname missing: \"$host\"";
   exit_status=1;
 } fi
 
@@ -36,8 +36,8 @@ target=$bdrive/$host/`date +%Y%b%d-%R`
 exclude=$DIR/backup-exclude
 
 if [ ! "$backup_source" -a "$latest" -a "$target" -a "$exclude" ]; then {
-  echo "Invalid config";
-  echo "backup_source:$backup_source \
+  log "Invalid config";
+  log "backup_source:$backup_source \
   latest:$latest \
   target:$target \
   exclude:$exclude";

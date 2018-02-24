@@ -1,7 +1,6 @@
 # makes an incremental snapshot
 
 log "start backup at" `date +"%x %X"`
-#echo -n "start backup at" `date +"%x %X"` >> ~/backup/backup.log
 log rsync                           \
   -av                               \
   --delete                          \
@@ -19,7 +18,6 @@ nice                                \
 
 rm $latest
 ln -s $target $latest
-#echo ",  finish at" `date +"%x %X"` >> ~/backup/backup.log
 log "finish backup at" `date +"%x %X"`
 
 exit
