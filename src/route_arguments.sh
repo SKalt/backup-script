@@ -6,7 +6,9 @@ while [ "$1" != "" ]; do
         -s | --setup )         . $DIR/src/setup.sh
                                ;;
         -h | --help )          . $DIR/src/usage.sh
-                               exit # unnecessary
+                               exit 1
+                               ;;
+        -l | --logging )       BACKUP_LOGGING=true
                                ;;
         * )                    echo "beginning backup script"
                                ;;

@@ -1,13 +1,4 @@
 # makes an incremental snapshot
-log () {
-  if [ $BACKUP_LOGGING  ]; then
-    if [ -w $BACKUP_LOGGING ]; then
-      echo $@ >> $BACKUP_LOGGING;
-    else
-      echo $@
-    fi;
-  fi;
-}
 
 log "start backup at" `date +"%x %X"`
 #echo -n "start backup at" `date +"%x %X"` >> ~/backup/backup.log
